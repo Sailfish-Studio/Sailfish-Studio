@@ -10,7 +10,6 @@ var JSZip = require('@sailfish/shared');
  */
 module.exports = function (input, isSprite, callback) {
     var msg = 'Failed to unzip and extract project.json, with error: ';
-
     return JSZip.loadAsync(input)
         .then(function (zip) {
             // look for json in the list of files, or in a subdirectory

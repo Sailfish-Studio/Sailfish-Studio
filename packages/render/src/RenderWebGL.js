@@ -1,22 +1,21 @@
-const EventEmitter = require('events');
-
-const hull = require('@turbowarp/ancient-hull.js');
-const twgl = require('twgl.js');
+import EventEmitter from 'events';
+import hull from '@turbowarp/ancient-hull.js';
+import * as twgl from 'twgl.js';
 import rendererCSS from './renderer.css?inline';
-
-const SVGRenderer = require('@sailfish/render');
-const Skin = require('./Skin');
-const BitmapSkin = require('./BitmapSkin');
-const Drawable = require('./Drawable');
-const Rectangle = require('./Rectangle');
-const PenSkin = require('./PenSkin');
-const RenderConstants = require('./RenderConstants');
-const ShaderManager = require('./ShaderManager');
-const SVGSkin = require('./SVGSkin');
-const TextBubbleSkin = require('./TextBubbleSkin');
-const EffectTransform = require('./EffectTransform');
-const CanvasMeasurementProvider = require('./util/canvas-measurement-provider');
-const log = require('./util/log');
+import SVGRenderer from './svg-renderer/svg-renderer';
+import Skin from './Skin';
+import BitmapSkin from './BitmapSkin';
+import Drawable from './Drawable';
+import Rectangle from './Rectangle';
+import PenSkin from './PenSkin';
+import RenderConstants from './RenderConstants';
+import ShaderManager from './ShaderManager';
+import SVGSkin from './SVGSkin';
+import TextBubbleSkin from './TextBubbleSkin';
+import EffectTransform from './EffectTransform';
+import CanvasMeasurementProvider from './util/canvas-measurement-provider';
+import TextWrapper from './util/text-wrapper';
+import log from './util/log';
 
 const __isTouchingDrawablesPoint = twgl.v3.create();
 const __candidatesBounds = new Rectangle();
@@ -92,14 +91,8 @@ const colorMatches = (a, b, offset) => (
 const FENCE_WIDTH = 15;
 
 // Loading text wrapper takes a while because of some of its dependencies, so only do so when needed.
-let _TextWrapper;
-const lazilyLoadTextWrapper = () => {
-    if (!_TextWrapper) {
-        // eslint-disable-next-line global-require
-        _TextWrapper = require('./util/text-wrapper');
-    }
-    return _TextWrapper;
-};
+// Now uses static ESM import; bundler handles code splitting.
+const lazilyLoadTextWrapper = () => TextWrapper;
 
 let _stylesheet;
 const loadStyles = () => {
@@ -2432,4 +2425,4 @@ RenderWebGL.UseGpuModes = {
  */
 RenderWebGL.powerPreference = 'default';
 
-module.exports = RenderWebGL;
+export default RenderWebGL;

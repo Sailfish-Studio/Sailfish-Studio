@@ -115,3 +115,4 @@ var paper = function(self, undefined) {
 /*#*/ include('export.js');
 return paper;
 }.call(this, typeof self === 'object' ? self : null);
+export default paper;

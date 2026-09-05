@@ -36,7 +36,8 @@ import FeaturedProjects from '../components/tw-featured-projects/featured-projec
 import Description from '../components/tw-description/description.jsx';
 import BrowserModal from '../components/browser-modal/browser-modal.jsx';
 import CloudVariableBadge from '../containers/tw-cloud-variable-badge.jsx';
-import TWWindchimeSubmitter from '../containers/tw-windchime-submitter.jsx';
+const TWWindchimeSubmitter = React.lazy(() => import('../containers/tw-windchime-submitter.jsx').then(m => ({default: m.default})));
+
 import {isBrowserSupported} from '../lib/tw-environment-support-prober';
 import AddonChannels from '../addons/channels';
 import {loadServiceWorker} from './load-service-worker';
@@ -132,25 +133,25 @@ const Footer = () => (
                         {/* Do not translate */}
                         {'Sailfish-Studio Desktop'}
                     </a>
-                    <a href="https://packager.sailfish-studio.org/">
+                    <a href="https://packager.turbowarp.org/">
                         {/* Do not translate */}
                         {'Sailfish-Studio Packager'}
                     </a>
-                    <a href="https://docs.sailfish-studio.org/embedding">
+                    <a href="https://docs.turbowarp.org/embedding">
                         <FormattedMessage
                             defaultMessage="Embedding"
                             description="Link in footer to embedding documentation for embedding link"
                             id="tw.footer.embed"
                         />
                     </a>
-                    <a href="https://docs.sailfish-studio.org/url-parameters">
+                    <a href="https://docs.turbowarp.org/url-parameters">
                         <FormattedMessage
                             defaultMessage="URL Parameters"
                             description="Link in footer to URL parameters documentation"
                             id="tw.footer.parameters"
                         />
                     </a>
-                    <a href="https://docs.sailfish-studio.org/">
+                    <a href="https://docs.turbowarp.org/">
                         <FormattedMessage
                             defaultMessage="Documentation"
                             description="Link in footer to additional documentation"
@@ -231,7 +232,7 @@ class Interface extends React.Component {
                 })}
                 dir={isRtl ? 'rtl' : 'ltr'}
             >
-                <TWWindchimeSubmitter />
+                <React.Suspense fallback={null}><TWWindchimeSubmitter /></React.Suspense>
                 {isHomepage ? (
                     <div className={styles.menu}>
                         <WrappedMenuBar
@@ -285,11 +286,11 @@ class Interface extends React.Component {
                                             values={{
                                                 link: (
                                                     <a
-                                                        href="https://docs.sailfish-studio.org/unshared-projects"
+                                                        href="https://docs.turbowarp.org/unshared-projects"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                     >
-                                                        {'https://docs.sailfish-studio.org/unshared-projects'}
+                                                        {'https://docs.turbowarp.org/unshared-projects'}
                                                     </a>
                                                 )
                                             }}

@@ -112,7 +112,6 @@ module.exports = {
     setMetadata,
     unsetMetadata
 };
-
 if (process.env.NODE_ENV === 'development') {
     /**
      * Retrieve a named request metadata item.
@@ -122,5 +121,5 @@ if (process.env.NODE_ENV === 'development') {
      */
     const getMetadata = name => metadata.get(name);
 
-    module.exports.getMetadata = getMetadata;
+module.exports.getMetadata = getMetadata;
 }

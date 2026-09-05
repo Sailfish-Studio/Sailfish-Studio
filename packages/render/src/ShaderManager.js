@@ -1,4 +1,4 @@
-const twgl = require('twgl.js');
+import * as twgl from 'twgl.js';
 import spriteVert from './shaders/sprite.vert?raw';
 import spriteFrag from './shaders/sprite.frag?raw';
 
@@ -201,4 +201,4 @@ ShaderManager.DRAW_MODE = {
     background: 'background'
 };
 
-module.exports = ShaderManager;
+export default ShaderManager;

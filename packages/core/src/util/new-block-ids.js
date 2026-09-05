@@ -7,7 +7,6 @@ const uid = require('./uid');
  */
 module.exports = blocks => {
     const oldToNew = {};
-
     // First update all top-level IDs and create old-to-new mapping
     for (let i = 0; i < blocks.length; i++) {
         const newId = uid();
